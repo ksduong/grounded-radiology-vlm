@@ -1,0 +1,23 @@
+[project]
+name = "mammo-multiimage"
+version = "0.1.0"
+description = "Study-level (2-view) extension of a mammography VLM fine-tuning pipeline"
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.0",
+    "Pillow>=10.0",
+    "tqdm>=4.65",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0"]
+
+[project.scripts]
+build-multiimage-dataset = "mammo_multiimage.cli:main"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
