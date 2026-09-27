@@ -1,23 +1,38 @@
 [project]
-name = "mammo-multiimage"
+name = "mammo-vlm"
 version = "0.1.0"
-description = "Study-level (2-view) extension of a mammography VLM fine-tuning pipeline"
+description = "Grounded VLM fine-tuning (Qwen2.5-VL-7B + LoRA) for mammography on VinDr-Mammo"
 requires-python = ">=3.10"
-dependencies = [
-    "pandas>=2.0",
-    "Pillow>=10.0",
-    "tqdm>=4.65",
-]
+dependencies = ["pandas>=2.0", "numpy>=1.24"]
 
 [project.optional-dependencies]
 dev = ["pytest>=8.0"]
-
-[project.scripts]
-build-multiimage-dataset = "mammo_multiimage.cli:main"
+# what the notebooks ran with on the GPU box (Python 3.11.15, CUDA 13.0, one H200).
+# versions come from the pip log saved in notebook 01; scikit-learn / matplotlib weren't in that log
+train = [
+    "torch==2.12.0",
+    "transformers==5.11.0",
+    "accelerate==1.13.0",
+    "peft==0.19.1",
+    "trl==1.5.1",
+    "datasets==4.8.5",
+    "qwen-vl-utils[decord]==0.0.14",
+    "ultralytics==8.4.60",
+    "Pillow==12.2.0",
+    "pandas==3.0.3",
+    "numpy==2.4.6",
+    "scikit-learn",
+    "matplotlib",
+    "tqdm",
+]
 
 [build-system]
 requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools.packages.find]
+where = ["src"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["src"]
