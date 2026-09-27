@@ -31,7 +31,7 @@ Conclusions:
 - Model C trades precision for recall. If you binarize to "flag for follow-up", sensitivity goes from 0.38 (B) to 0.57 (C), and false positives go from 57 to 324 ([`results/binary_suspicion.csv`](results/binary_suspicion.csv)).
 - The rare-class gains sit on very small numbers (e.g Suspicious Lymph Nodes have 10 test images)
 - YOLO11s isn't a fair head-to-head (YOLO11 mAP50 = 0.034 on calcifications; VLMs F1 ≈ 0.57, but measure different things). YOLO reported separately ([`results/yolo11s_baseline.csv`](results/yolo11s_baseline.csv)).
-= The zero-shot model writes reports that look completely professional, but its BI-RADS agreement is below chance (κw −0.02) => clearest argument for grounding the model with bounding boxes.
+- The zero-shot model writes reports that look completely professional, but its BI-RADS agreement is below chance (κw −0.02) => clearest argument for grounding the model with bounding boxes.
 
 ---
 
@@ -43,8 +43,8 @@ Asymmetry is by definition a comparison between sides and was one of the weakest
 
 | Question | Decision | Why |
 |---|---|---|
-| Pairing | Same view, L + R (not CC + MLO of one side) | Radiologists compare the same view of both breasts, and asymmetry is defined against the other side. If the model looked at the CC + MLO of one breast, it would need to know spatially which findings in one view are the same ss in the other and VinDr has no ID linking them |
-| BI-RADS / density | Reported per breast | VinDr labels them per breast, so a patient may have BI-RADS 1 on the left and 4 on the right. While shadowing, I learned that if either is flagged as suspicious (3+), the patient is called back. |
+| Pairing | Same view, L + R (not CC + MLO of one side) | Radiologists compare the same view of both breasts, and asymmetry is defined against the other side. If the model looked at the CC + MLO of one breast, it would need to know spatially which findings in one view are the same as in the other and VinDr has no ID linking them |
+| BI-RADS / density | Reported per breast | VinDr labels them per breast, so a patient may have BI-RADS 1 on the left and 4 on the right. While shadowing, I learned that mnagement follows the more concerning side, so a pair needs a per-breast answer. |
 
 Data: 7,198 train / 800 val / 2,000 test pairs, built with the **same seed and study-level split** as A/B/C, so the test patients are identical.
 
@@ -66,7 +66,7 @@ So far, pairing doesn't help. Density matches single-image B, but everything els
 **Modifications in progress:**
 | Idea | Motivation |
 |---|---|
-| Evaluate third run with specific side-tagging | Makes a side-aware finding score possible. |
+| Evaluate the side-tagged second run (training finished) | Makes a side-aware finding score possible. |
 | Compute loss on the answer tokens only | Right now the system and user prompt are in the loss too, so much of each training step goes to re-learning the same fixed prompt. All models share this setup, so it shouldn't skew the comparisons, but the box tokens get very little weight, which may be one reason grounding is weak (along with small findings and image downscaling). Adding answer-only loss changes one thing without changing the rest of the setup; an ablation is planned. |
 | Check per-image resolution in pairs vs. single images | Grounding dropped the most (IoU 0.228 vs. 0.371). If two images split the model's image-token budget, each one gets downscaled. |
 | Start from Model B's adapter instead of the base model | Replicate how Model C builds on B. |
@@ -135,4 +135,4 @@ pytest          # 27 tests
 - Dataset: Nguyen, H.T. et al. *VinDr-Mammo: A large-scale benchmark dataset for computer-aided diagnosis in full-field digital mammography.* Scientific Data 10, 277 (2023).
 - Base model: Qwen2.5-VL-7B-Instruct (Qwen team). Training uses Hugging Face `transformers`, `peft`, `trl`.
 
-My contributions: re-running and cleaning the A/B/C pipeline, the bilateral extension, the tested `src/` package, and the eval fixes.
+My part: re-running and cleaning the A/B/C pipeline, the bilateral extension, the tested `src/` package, and the eval fixes.
