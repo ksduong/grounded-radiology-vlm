@@ -1,0 +1,28 @@
+# data: VinDr-Mammo is under a PhysioNet data use agreement, never commit it
+data/
+*.dcm
+*.png
+!docs/*.png
+*.jsonl
+splits.json
+lora_runs/
+lora_data/
+runs/
+yolo/
+*.pt
+*.safetensors
+checkpoint-*/
+
+# python / jupyter
+__pycache__/
+*.egg-info/
+.ipynb_checkpoints/
+.pytest_cache/
+.venv/
+
+# mac
+.DS_Store
+
+# editor + local backups
+.vscode/
+_backup_before_redaction/
