@@ -1,0 +1,5 @@
+model,birads_acc,birads_kappa_w,density_acc,density_kappa_w
+zero_shot,0.471,-0.022,0.211,-0.001
+model_A_plain,0.766,0.561,0.845,0.621
+model_B_grounded,0.773,0.583,0.831,0.549
+model_C_rare_enriched,0.733,0.549,0.839,0.597

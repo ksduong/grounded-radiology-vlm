@@ -1,0 +1,9 @@
+finding,test_images,zero_shot,model_A_plain,model_B_grounded,model_C_rare_enriched
+Mass,219,0.099,0.414,0.485,0.435
+Suspicious Calcification,105,0.068,0.606,0.574,0.576
+Asymmetry,78,0.000,0.021,0.092,0.146
+Architectural Distortion,24,0.013,0.000,0.000,0.055
+Suspicious Lymph Node,10,0.000,0.133,0.000,0.320
+Other Suspicious Signs,14,0.000,0.133,0.133,0.119
+Macro F1,,0.030,0.218,0.214,0.275
+Micro F1,,0.082,0.385,0.419,0.352

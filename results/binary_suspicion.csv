@@ -1,0 +1,7 @@
+model,task,f1,ppv,sensitivity,specificity,npv,tp,fp,fn,tn
+model_A_plain,finding_classification,0.451,0.654,0.345,0.982,0.939,123,65,234,3578
+model_A_plain,plain_report,0.448,0.633,0.347,0.980,0.939,124,72,233,3571
+model_B_grounded,finding_classification,0.497,0.706,0.384,0.984,0.942,137,57,220,3586
+model_B_grounded,grounded_report,0.476,0.633,0.381,0.978,0.942,136,79,221,3564
+model_C_rare_enriched,finding_classification,0.461,0.386,0.571,0.911,0.956,204,324,153,3319
+model_C_rare_enriched,grounded_report,0.430,0.339,0.585,0.888,0.956,209,407,148,3236

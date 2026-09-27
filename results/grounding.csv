@@ -1,0 +1,3 @@
+model,mean_iou,iou_at_0.5,n_cases
+model_B_grounded,0.371,0.429,482
+model_C_rare_enriched,0.368,0.434,482

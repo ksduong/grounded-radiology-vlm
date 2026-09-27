@@ -1,0 +1,8 @@
+class,precision,recall,map50,map50_95,n_test
+Mass,0.364,0.300,0.274,0.141,237
+Suspicious Calcification,0.101,0.104,0.034,0.014,115
+Asymmetry,0.000,0.000,0.012,0.005,79
+Architectural Distortion,0.000,0.000,0.000,0.000,24
+Suspicious Lymph Node,0.786,0.182,0.277,0.133,11
+Other Suspicious Signs,0.000,0.000,0.000,0.000,16
+All,0.209,0.098,0.100,0.049,482
