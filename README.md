@@ -48,7 +48,9 @@ Asymmetry is by definition a comparison between sides and was one of the weakest
 
 Data: 7,198 train / 800 val / 2,000 test pairs, built with the **same seed and study-level split** as A/B/C, so the test patients are identical.
 
-**Results (first training run, evaluated on all 2,000 test pairs / 4,000 breasts; scored in section 12 of [notebook 04](notebooks/04_bilateral_multiimage.ipynb)):**
+**Results**
+
+(first training run, evaluated on all 2,000 test pairs / 4,000 breasts; scored in section 12 of [notebook 04](notebooks/04_bilateral_multiimage.ipynb)):
 
 | Metric | Bilateral (L+R pair) | Model B (single image, reference) |
 |---|---|---|
